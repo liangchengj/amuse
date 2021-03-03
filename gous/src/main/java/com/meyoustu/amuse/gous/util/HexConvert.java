@@ -34,14 +34,17 @@ public interface HexConvert {
     }
 
     default Color parseColorHex(String colorHex) {
+        if (colorHex.length() < 6) {
+            throw new UnsupportedOperationException("It's not a color hex string!");
+        }
         int colorHexLen = colorHex.length();
         colorHex = colorHex.replaceAll("^#+","");
-        byte[] bts = new byte[colorHexLen / 2];
+        byte[] bytes = new byte[colorHexLen / 2];
         for (short i = 0; i < colorHexLen; i += 2) {
-            bts[i / 2] = (byte) (parseInt(colorHex.substring(i, i + 2), 16));
+            bytes[i / 2] = (byte) (parseInt(colorHex.substring(i, i + 2), 16));
         }
 
-        return new Color(bts[0] & 0xff, bts[1] & 0xff, bts[2] & 0xff);
+        return new Color(bytes[0] & 0xff /* Red */, bytes[1] & 0xff /* Green */, bytes[2] & 0xff /* Blue */);
     }
 
 }
