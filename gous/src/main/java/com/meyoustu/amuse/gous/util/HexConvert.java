@@ -20,26 +20,9 @@ public interface HexConvert {
         return sb.toString();
     }
 
-
     default String convertToHex(Color color) {
-        int[] rgb = new int[3];
-        rgb[0] = color.getRed();
-        rgb[1] = color.getGreen();
-        rgb[2] = color.getBlue();
-
-        String append = "";
-        for (int val : rgb) {
-            String hex = toHexString(val);
-            append += chkUtil(hex);
-        }
-        return ("#" + append).toUpperCase();
+        return String.format("#%02X%02X%02X", color.getRed(), color.getGreen(), color.getBlue());
     }
-
-
-    private String chkUtil(String hex) {
-        return hex.length() == 1 ? "0" + hex : hex;
-    }
-
 
     default String parseHex(String hex) {
         int hexLen = hex.length();
