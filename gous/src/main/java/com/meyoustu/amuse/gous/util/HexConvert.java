@@ -26,11 +26,11 @@ public interface HexConvert {
 
     default String parseHex(String hex) {
         int hexLen = hex.length();
-        byte[] bts = new byte[hexLen / 2];
+        byte[] bytes = new byte[hexLen / 2];
         for (int i = 0; i < hexLen; i += 2) {
-            bts[i / 2] = (byte) parseInt(hex.substring(i, i + 2), 16);
+            bytes[i / 2] = (byte) parseInt(hex.substring(i, i + 2), 16);
         }
-        return new String(bts);
+        return new String(bytes);
     }
 
     default Color parseColorHex(String colorHex) {
