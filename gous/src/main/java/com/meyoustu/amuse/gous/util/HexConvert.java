@@ -12,12 +12,12 @@ import static java.lang.Integer.toHexString;
  */
 public interface HexConvert {
     default String convertToHex(String string) {
-        String append = "";
-        for (byte bt : string.getBytes()) {
-            String hex = toHexString(bt & 0xff);
-            append += chkUtil(hex);
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+            sb.append(String.format("%02X", b & 0xff));
         }
-        return append.toUpperCase();
+
+        return sb.toString();
     }
 
 
