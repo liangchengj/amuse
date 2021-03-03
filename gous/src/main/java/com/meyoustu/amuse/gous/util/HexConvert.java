@@ -35,7 +35,7 @@ public interface HexConvert {
 
     default Color parseColorHex(String colorHex) {
         int colorHexLen = colorHex.length();
-        colorHex = colorHex.replace("#", "");
+        colorHex = colorHex.replaceAll("^#+","");
         byte[] bts = new byte[colorHexLen / 2];
         for (short i = 0; i < colorHexLen; i += 2) {
             bts[i / 2] = (byte) (parseInt(colorHex.substring(i, i + 2), 16));
